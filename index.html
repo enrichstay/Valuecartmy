@@ -1,675 +1,1053 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valuecartmy· Your trusted partner for travel-accomadation-shopping </title>
-<link href="https://www.tiktok.com/@valuecartmy" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ValueCart MY — Best Deals, One Link</title>
 
-  :root {
-    --bg: #141313;
-    --surface: #88888c;
-    --surface2: #1c1c27;
-    --border: rgba(255,255,255,0.07);
-    --text: ##5aeb1c;
-    --muted: rgba(240,239,248,0.5);
-    --hint: rgba(240,239,248,0.25);
-    --accent1: #c084fc;
-    --accent2: #38bdf8;
-    --accent3: #fb923c;
-    --green: #4ade80;
-    --pink: #f472b6;
-    --gold: #fbbf24;
-  }
+    <!-- Open Graph Meta Tags for Social Optimization -->
+    <meta property="og:title" content="ValueCart MY — Best Deals, One Link">
+    <meta property="og:description" content="TikTok Shop, Shopee, Agoda & Homestay — all in one place">
+    <meta property="og:image" content="valuecart-logo.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="ValueCart MY">
 
-  html { scroll-behavior: smooth; }
+    <style>
+        /* ==========================================================================
+           CORE DESIGN SYSTEM VARIABLES
+           ========================================================================== */
+        :root {
+            --primary-orange: #FF6B00;
+            --secondary-green: #2ECC71;
+            --accent-blue: #1A73E8;
+            --bg-dark: #0D0D0D;
+            --text-white: #FFFFFF;
+            --text-muted: rgba(255, 255, 255, 0.55);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            
+            /* Social Brand Color Profiles */
+            --shopee-orange: #EE4D2D;
+            --discount-red: #FF4D4D;
+            --star-yellow: #FFD700;
+            --whatsapp-green: #2ECC71;
+        }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    min-height: 100vh;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
+        /* RESET & RESET BASICS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
 
-  /* ── AMBIENT GLOW ── */
-  body::before {
-    content: '';
-    position: fixed;
-    top: -200px; left: 50%;
-    transform: translateX(-50%);
-    width: 700px; height: 700px;
-    background: radial-gradient(ellipse, rgba(192,132,252,0.12) 0%, transparent 40%);
-    pointer-events: none;
-    z-index: 0;
-  }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            overflow-x: hidden;
+            width: 100%;
+        }
 
-  .container {
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 0 20px 80px;
-    position: relative;
-    z-index: 1;
-  }
+        /* ==========================================================================
+           GLOBAL UTILITIES & LAYOUT SCHEMES
+           ========================================================================== */
+        .slides-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
 
-  /* ── PROFILE HEADER ── */
-  .profile {
-    text-align: center;
-    padding: 48px 0 36px;
-  }
+        .slide {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1rem;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+        }
 
-  .avatar-wrap {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 18px;
-  }
+        .slide-content {
+            width: 100%;
+            max-width: 390px; /* Locked down fluidly for iPhone 14 presentation base scale */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            z-index: 5;
+        }
 
-  .avatar-ring {
-    width: 88px; height: 88px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent1), var(--accent2), var(--pink));
-    padding: 2.5px;
-    animation: spin 6s linear infinite;
-  }
+        @media (min-width: 768px) {
+            .slide-content {
+                max-width: 800px; /* Expands elegantly on Desktop views */
+            }
+        }
 
-  @keyframes spin {
-    from { filter: hue-rotate(0deg); }
-    to { filter: hue-rotate(360deg); }
-  }
+        .slide-title {
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: var(--primary-orange);
+            letter-spacing: -0.5px;
+            margin-bottom: 0.25rem;
+        }
 
-  .avatar-inner {
-    width: 100%; height: 100%;
-    border-radius: 50%;
-    background: var(--bg);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Syne', sans-serif;
-    font-size: 28px; font-weight: 800;
-    background-image: url('https://raw.githubusercontent.com/enrichstay/Valuecartmy/refs/heads/main/WhatsApp%20Image%202026-05-30%20at%2011.50.33%20AM.jpeg');
-    background-size: cover;
-  }
+        /* Glassmorphism Structural Standard */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35);
+        }
 
-  .live-badge {
-    position: absolute;
-    bottom: 2px; right: 2px;
-    background: #ff2d55;
-    color: white;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    padding: 2px 6px;
-    border-radius: 20px;
-    border: 2px solid var(--bg);
-    text-transform: uppercase;
-    animation: pulse 2s ease-in-out infinite;
-  }
+        /* Standard CTA Button Bases */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 0.85rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #FFFFFF;
+            background: var(--primary-orange);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+        }
 
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
-  }
+        .btn:active, .btn:hover {
+            transform: scale(0.98);
+            opacity: 0.95;
+        }
 
-  .profile-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 24px;
-    font-weight: 800;
-    margin-bottom: 4px;
-    background: linear-gradient(90deg, var(--text), var(--accent1));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+        /* Generic Slide Down Indicators */
+        .scroll-hint {
+            position: absolute;
+            bottom: 1.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.25);
+            pointer-events: none;
+            text-transform: uppercase;
+        }
 
-  .profile-handle {
-    font-size: 14px;
-    color: var(--muted);
-    margin-bottom: 12px;
-  }
+        /* ==========================================================================
+           COMPONENTS: SCROLL PROGRESS BAR & LOADING SCREEN
+           ========================================================================== */
+        #scroll-progress-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 1000;
+        }
 
-  .profile-bio {
-    font-size: 13.5px;
-    color: var(--muted);
-    max-width: 300px;
-    margin: 0 auto 20px;
-    line-height: 1.7;
-  }
+        #scroll-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--primary-orange);
+            box-shadow: 0 0 10px rgba(255, 107, 0, 0.8);
+            transition: width 0.1s linear;
+        }
 
-  .stats-row {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin-bottom: 4px;
-  }
+        #loader-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0D0D0D;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
 
-  .stat { text-align: center; }
-  .stat-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text);
-  }
-  .stat-label {
-    font-size: 11px;
-    color: var(--hint);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
+        .loader-ring {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 107, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary-orange);
+            animation: spinEngine 0.8s infinite linear;
+            box-shadow: 0 0 15px rgba(255, 107, 0, 0.2);
+        }
 
-  /* ── SECTION LABEL ── */
-  .section-label {
-    font-size: 10px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--hint);
-    margin: 32px 0 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .section-label::before, .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
+        .loader-logo-placeholder {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #FFFFFF;
+        }
 
-  /* ── PLATFORM CARDS ── */
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    margin-bottom: 12px;
-    overflow: hidden;
-    transition: transform 0.2s, border-color 0.2s;
-    cursor: pointer;
-    text-decoration: none;
-    display: block;
-    position: relative;
-  }
+        @keyframes spinEngine {
+            to { transform: rotate(360deg); }
+        }
 
-  .card:hover {
-    transform: translateY(-2px);
-    border-color: rgba(255,255,255,0.15);
-  }
+        /* ==========================================================================
+           SLIDE 1: HERO / WELCOME INTERFACE STYLES
+           ========================================================================== */
+        .hero-slide {
+            background-color: #0D0D0D;
+            overflow: hidden;
+        }
 
-  .card-inner {
-    padding: 18px 20px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
+        .mesh-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            filter: blur(80px);
+            opacity: 0.55;
+            pointer-events: none;
+        }
 
-  .platform-icon {
-    width: 46px; height: 46px;
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
-    flex-shrink: 0;
-    position: relative;
-  }
+        .mesh-blob {
+            position: absolute;
+            border-radius: 50%;
+            will-change: transform;
+        }
 
-  .card-content { flex: 1; min-width: 0; }
+        .blob-orange {
+            top: -10%; left: -10%; width: 260px; height: 260px;
+            background: radial-gradient(circle, #FF6B00 0%, rgba(255,107,0,0) 70%);
+            animation: driftA 18s infinite alternate ease-in-out;
+        }
 
-  .card-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 2px;
-  }
+        .blob-green {
+            bottom: -5%; right: -10%; width: 300px; height: 300px;
+            background: radial-gradient(circle, #2ECC71 0%, rgba(46,204,113,0) 70%);
+            animation: driftB 22s infinite alternate ease-in-out;
+        }
 
-  .card-sub {
-    font-size: 12.5px;
-    color: var(--muted);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+        .blob-blue {
+            top: 35%; left: 45%; width: 240px; height: 240px;
+            background: radial-gradient(circle, #1A73E8 0%, rgba(26,115,232,0) 70%);
+            animation: driftC 16s infinite alternate ease-in-out;
+        }
 
-  .card-badge {
-    font-size: 10px;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    flex-shrink: 0;
-  }
+        @keyframes driftA { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(60px, 40px) scale(1.15); } }
+        @keyframes driftB { 0% { transform: translate(0, 0) scale(1.1); } 100% { transform: translate(-80px, -50px) scale(0.9); } }
+        @keyframes driftC { 0% { transform: translate(-50%, -50%) scale(0.95); } 100% { transform: translate(-30%, -30%) scale(1.2); } }
 
-  .card-arrow {
-    font-size: 18px;
-    color: var(--hint);
-    flex-shrink: 0;
-    transition: transform 0.2s, color 0.2s;
-  }
-  .card:hover .card-arrow {
-    transform: translateX(3px);
-    color: var(--muted);
-  }
+        .logo-wrapper {
+            position: relative;
+            display: inline-flex;
+            margin: 0 auto;
+        }
 
-  /* ── ACCENT STRIP ── */
-  .card-strip {
-    height: 3px;
-    width: 100%;
-  }
+        .main-brand-logo {
+            width: 110px;
+            height: auto;
+            position: relative;
+            z-index: 3;
+        }
 
-  /* ── HOTEL CARD SPECIAL ── */
-  .hotel-card .card-strip { background: linear-gradient(90deg, #3b82f6, #06b6d4); }
-  .hotel-icon { background: rgba(59,130,246,0.15); }
+        .logo-ambient-glow {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140px; height: 140px;
+            background: radial-gradient(circle, rgba(255,107,0,0.3) 0%, rgba(255,107,0,0) 70%);
+            filter: blur(10px);
+            z-index: 2;
+        }
 
-  .agoda-card .card-strip { background: linear-gradient(90deg, #ef4444, #f97316); }
-  .agoda-icon { background: rgba(239,68,68,0.15); }
+        .hero-tagline {
+            font-size: 2.15rem;
+            font-weight: 800;
+            line-height: 1.25;
+            letter-spacing: -1px;
+            color: #FFFFFF;
+            margin-top: 0.5rem;
+        }
 
-  .tiktok-card .card-strip { background: linear-gradient(90deg, #000, #ff2d55, #69c9d0); }
-  .tiktok-icon { background: rgba(255,45,85,0.12); }
+        .glow-text {
+            color: var(--primary-orange);
+            text-shadow: 0 0 20px rgba(255, 107, 0, 0.25);
+        }
 
-  .shopee-card .card-strip { background: linear-gradient(90deg, #f97316, #ef4444); }
-  .shopee-icon { background: rgba(249,115,22,0.15); }
+        .swipe-indicator-block {
+            position: absolute;
+            bottom: 4.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+        }
 
-  /* ── BADGE VARIANTS ── */
-  .badge-blue { background: rgba(56,189,248,0.15); color: var(--accent2); }
-  .badge-red { background: rgba(248,113,113,0.15); color: #f87171; }
-  .badge-orange { background: rgba(251,146,60,0.15); color: var(--accent3); }
-  .badge-green { background: rgba(74,222,128,0.15); color: var(--green); }
-  .badge-pink { background: rgba(244,114,182,0.15); color: var(--pink); }
+        .swipe-text-hint {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.35);
+        }
 
-  /* ── FEATURED DEALS ROW ── */
-  .deals-scroll {
-    display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    padding: 4px 2px 10px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    margin: 0 -2px;
-  }
-  .deals-scroll::-webkit-scrollbar { display: none; }
+        .bounce-arrow-hint {
+            font-size: 1.15rem;
+            color: var(--primary-orange);
+            animation: bounceEngine 2s infinite ease-in-out;
+        }
 
-  .deal-pill {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 40px;
-    padding: 8px 14px;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    white-space: nowrap;
-    font-size: 12.5px;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.2s;
-    flex-shrink: 0;
-    text-decoration: none;
-  }
-  .deal-pill:hover {
-    background: var(--surface);
-    color: var(--text);
-    border-color: rgba(255,255,255,0.15);
-  }
-  .deal-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
+        @keyframes bounceEngine {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-6px); }
+            60% { transform: translateY(-3px); }
+        }
 
-  /* ── TIKTOK SHOWCASE ── */
-  .tiktok-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 8px;
-  }
+        /* ==========================================================================
+           SLIDE 2: TIKTOK SHOWCASE STYLES
+           ========================================================================== */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.65rem;
+            width: 100%;
+        }
 
-  .tiktok-thumb {
-    aspect-ratio: 9/16;
-    background: var(--surface2);
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
-    border: 1px solid var(--border);
-    transition: transform 0.2s;
-  }
-  .tiktok-thumb:hover { transform: scale(1.02); }
+        @media (min-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1rem;
+            }
+        }
 
-  .tiktok-thumb-bg {
-    width: 100%; height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-  }
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            padding: 0.65rem;
+            text-align: left;
+            transition: transform 0.25s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.2, 0, 0.2, 1), border-color 0.25s ease;
+        }
 
-  .tiktok-overlay {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    padding: 20px 8px 8px;
-    background: linear-gradient(transparent, rgba(0,0,0,0.7));
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
+        .product-card:hover, .product-card:active {
+            transform: translateY(-3px);
+            border-color: rgba(255, 107, 0, 0.35);
+            box-shadow: 0 0 15px rgba(255, 107, 0, 0.25);
+        }
 
-  .tiktok-views {
-    font-size: 10px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.9);
-  }
+        .img-placeholder {
+            width: 100%;
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.015);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
 
-  .tiktok-play {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 30px; height: 30px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px;
-    color: white;
-    backdrop-filter: blur(4px);
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-  .tiktok-thumb:hover .tiktok-play { opacity: 1; }
+        .placeholder-icon {
+            font-size: 1.35rem;
+            opacity: 0.25;
+        }
 
-  /* ── TRUST ROW ── */
-  .trust-row {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 28px 0 0;
-  }
-  .trust-chip {
-    font-size: 11px;
-    color: var(--hint);
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  .trust-chip::before {
-    content: '✓';
-    color: var(--green);
-    font-weight: 700;
-  }
+        .product-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 0.25rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 2.1rem;
+        }
 
-  /* ── FOOTER ── */
-  .footer {
-    text-align: center;
-    padding: 32px 0 0;
-  }
-  .footer-text {
-    font-size: 11px;
-    color: var(--hint);
-  }
-  .footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    margin-top: 10px;
-  }
-  .footer-links a {
-    font-size: 11px;
-    color: var(--hint);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .footer-links a:hover { color: var(--muted); }
+        .product-price {
+            color: var(--secondary-green);
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
 
-  /* ── ANIMATE IN ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(18px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+        .btn-sm {
+            padding: 0.5rem 0.75rem !important;
+            font-size: 0.8rem !important;
+            border-radius: 8px !important;
+        }
 
-  .profile { animation: fadeUp 0.5s ease forwards; }
-  .section-label { animation: fadeUp 0.5s ease 0.1s both; }
-  .card:nth-child(1) { animation: fadeUp 0.5s ease 0.15s both; }
-  .card:nth-child(2) { animation: fadeUp 0.5s ease 0.22s both; }
-  .card:nth-child(3) { animation: fadeUp 0.5s ease 0.29s both; }
-  .card:nth-child(4) { animation: fadeUp 0.5s ease 0.36s both; }
+        /* ==========================================================================
+           SLIDE 3: HORIZONTAL CAROUSEL VIDEO COMPONENT
+           ========================================================================== */
+        .video-scroll-row {
+            display: flex;
+            width: 100%;
+            gap: 0.75rem;
+            overflow-x: auto;
+            padding-bottom: 0.35rem;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
 
-  /* ── NOTIFICATION TOAST ── */
-  .toast {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%) translateY(80px);
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 12px 20px;
-    border-radius: 40px;
-    font-size: 13px;
-    z-index: 100;
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    white-space: nowrap;
-    backdrop-filter: blur(10px);
-  }
-  .toast.show { transform: translateX(-50%) translateY(0); }
+        .video-scroll-row::-webkit-scrollbar {
+            display: none;
+        }
 
-  /* ── DEAL HIGHLIGHT CARD ── */
-  .highlight-card {
-    background: linear-gradient(135deg, rgba(192,132,252,0.12), rgba(56,189,248,0.08));
-    border: 1px solid rgba(192,132,252,0.25);
-    border-radius: 18px;
-    padding: 18px 20px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    cursor: pointer;
-    transition: transform 0.2s;
-    text-decoration: none;
-  }
-  .highlight-card:hover { transform: translateY(-2px); }
+        .video-card {
+            flex: 0 0 82%;
+            scroll-snap-align: center;
+            display: flex;
+            flex-direction: column;
+            padding: 0.85rem;
+            text-align: left;
+        }
 
-  .highlight-icon {
-    font-size: 30px;
-    flex-shrink: 0;
-  }
-  .highlight-content { flex: 1; }
-  .highlight-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 3px;
-  }
-  .highlight-sub {
-    font-size: 12.5px;
-    color: var(--muted);
-  }
-  .highlight-tag {
-    background: rgba(192,132,252,0.2);
-    color: var(--accent1);
-    font-size: 10px;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-</style>
+        @media (min-width: 768px) {
+            .video-card {
+                flex: 0 0 calc(33.333% - 0.5rem);
+            }
+        }
+
+        .thumbnail-placeholder {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.04));
+            border-radius: 10px;
+            position: relative;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .view-badge {
+            position: absolute;
+            top: 6px; left: 6px;
+            background: var(--accent-blue);
+            color: #FFFFFF;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            letter-spacing: 0.3px;
+        }
+
+        .video-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            line-height: 1.35;
+            margin-bottom: 0.65rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 2.3rem;
+        }
+
+        .watch-link {
+            color: var(--primary-orange);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-top: auto;
+        }
+
+        /* ==========================================================================
+           SLIDE 4: SHOPEE STOREFRONT SCHEMES
+           ========================================================================== */
+        .store-banner {
+            width: 100%;
+            height: 105px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, rgba(238, 77, 45, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%);
+        }
+
+        .banner-content {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 1rem;
+            height: 100%;
+        }
+
+        .banner-logo-placeholder {
+            width: 48px; height: 48px;
+            background: var(--shopee-orange);
+            border-radius: 10px;
+            color: #FFFFFF;
+            font-weight: 800;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(238, 77, 45, 0.25);
+        }
+
+        .banner-text { text-align: left; }
+        .banner-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.1rem; }
+        .banner-subtitle { font-size: 0.75rem; color: var(--text-muted); }
+
+        .category-chips-container {
+            display: flex;
+            width: 100%;
+            gap: 0.45rem;
+            overflow-x: auto;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.2rem;
+            scrollbar-width: none;
+        }
+
+        .category-chips-container::-webkit-scrollbar { display: none; }
+
+        .chip {
+            white-space: nowrap;
+            padding: 0.45rem 0.85rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .chip.active {
+            background: rgba(238, 77, 45, 0.12);
+            border-color: var(--shopee-orange);
+            color: #FFFFFF;
+        }
+
+        .btn-shopee-store {
+            background: var(--secondary-green);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.15);
+        }
+
+        /* ==========================================================================
+           SLIDE 5: SHOPEE LIVE & PRODUCTION SYSTEM
+           ========================================================================== */
+        .live-product-card {
+            flex: 0 0 76%;
+            scroll-snap-align: center;
+            display: flex;
+            flex-direction: column;
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        @media (min-width: 768px) {
+            .live-product-card {
+                flex: 0 0 calc(33.333% - 0.5rem);
+            }
+        }
+
+        .product-img-wrapper {
+            width: 100%;
+            aspect-ratio: 1.25 / 1;
+            background: rgba(255, 255, 255, 0.015);
+            border-radius: 10px;
+            position: relative;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 6px; left: 6px;
+            background: var(--discount-red);
+            color: #FFFFFF;
+            font-size: 0.6rem;
+            font-weight: 800;
+            padding: 0.15rem 0.35rem;
+            border-radius: 4px;
+        }
+
+        .live-product-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 0.4rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 2.1rem;
+        }
+
+        .live-price-container {
+            display: flex;
+            align-items: baseline;
+            gap: 0.35rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .price-current { color: var(--secondary-green); font-weight: 700; font-size: 1rem; }
+        .price-original { color: var(--text-muted); text-decoration: line-through; font-size: 0.7rem; }
+
+        .btn-buy-now {
+            background: transparent;
+            border: 1px solid var(--primary-orange);
+            color: #FFFFFF;
+            padding: 0.45rem !important;
+            font-size: 0.78rem !important;
+            border-radius: 8px !important;
+        }
+
+        .btn-shopee-live {
+            background: linear-gradient(90deg, var(--shopee-orange) 0%, #FF6B00 100%);
+        }
+
+        /* ==========================================================================
+           SLIDE 6: AGODA PRESENTATION RULES
+           ========================================================================== */
+        .travel-bg-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            background: linear-gradient(180deg, rgba(13, 13, 13, 0.88) 0%, rgba(13, 13, 13, 0.96) 100%),
+                        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=20');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .agoda-card {
+            width: 100%;
+            padding: 1.25rem !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .agoda-logo-placeholder {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            display: flex;
+        }
+
+        .a-red { color: #F6384A; } .g-orange { color: #FF7B00; } .o-yellow { color: #FFCC00; } .d-blue { color: #4285F4; } .a-green { color: #2ECC71; }
+
+        .star-rating-row {
+            color: var(--star-yellow);
+            font-size: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .agoda-description {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        .btn-agoda { background: var(--accent-blue); }
+
+        /* ==========================================================================
+           SLIDE 7: HOMESTAY SYSTEM ARCHITECTURE
+           ========================================================================== */
+        .homestay-gallery-viewport {
+            position: relative;
+            width: 100%;
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .gallery-scroll-container {
+            display: flex;
+            width: 100%;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+
+        .gallery-scroll-container::-webkit-scrollbar { display: none; }
+
+        .gallery-item-card {
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+        }
+
+        .gallery-img-placeholder {
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.015), rgba(255,255,255,0.04));
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .homestay-price-badge {
+            position: absolute;
+            bottom: 10px; right: 10px;
+            background: var(--secondary-green);
+            color: #FFFFFF;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 0.35rem 0.65rem;
+            border-radius: 6px;
+        }
+
+        .amenities-row {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 0.65rem 0.35rem !important;
+            gap: 0.2rem;
+        }
+
+        .amenity-token { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; }
+        .amenity-icon { font-size: 1.1rem; }
+        .amenity-label { font-size: 0.65rem; font-weight: 600; color: var(--text-muted); }
+
+        .homestay-actions-grid { display: flex; width: 100%; gap: 0.5rem; }
+        .btn-direct-book { flex: 1; background: var(--primary-orange); }
+        .btn-whatsapp-direct { flex: 1; background: var(--whatsapp-green); }
+
+        /* ==========================================================================
+           SLIDE 8: SOCIAL STACK DIRECT ROUTING HUB
+           ========================================================================== */
+        .social-hub-slide { overflow: hidden; }
+        
+        .ambient-orange-glow {
+            position: absolute;
+            bottom: -10%; left: 50%; transform: translateX(-50%);
+            width: 120%; height: 50%;
+            background: radial-gradient(ellipse at bottom, rgba(255, 107, 0, 0.12) 0%, rgba(13, 13, 13, 0) 70%);
+            pointer-events: none;
+        }
+
+        .social-links-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 0.55rem;
+            margin: 0.5rem 0;
+        }
+
+        .social-link-btn {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 0.85rem 1.15rem !important;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .social-icon { font-size: 1.15rem; margin-right: 0.85rem; display: flex; }
+        .social-label { color: #FFFFFF; font-size: 0.9rem; font-weight: 600; }
+
+        /* Brand Accent Glow Engines */
+        .brand-tiktok:hover, .brand-tiktok:active { border-color: rgba(255, 255, 255, 0.25); box-shadow: 0 0 12px rgba(255, 255, 255, 0.1); }
+        .brand-shopee:hover, .brand-shopee:active { border-color: var(--shopee-orange); box-shadow: 0 0 12px rgba(238, 77, 45, 0.25); }
+        .brand-agoda:hover, .brand-agoda:active { border-color: var(--accent-blue); box-shadow: 0 0 12px rgba(26, 115, 232, 0.25); }
+        .brand-instagram:hover, .brand-instagram:active { border-color: #E1306C; box-shadow: 0 0 12px rgba(225, 48, 108, 0.25); }
+        .brand-facebook:hover, .brand-facebook:active { border-color: #1877F2; box-shadow: 0 0 12px rgba(24, 119, 242, 0.25); }
+        .brand-whatsapp:hover, .brand-whatsapp:active { border-color: var(--whatsapp-green); box-shadow: 0 0 12px rgba(46, 204, 113, 0.25); }
+        .brand-youtube:hover, .brand-youtube:active { border-color: #FF0000; box-shadow: 0 0 12px rgba(255, 0, 0, 0.25); }
+
+        .hub-footer { width: 100%; margin-top: 1rem; }
+        .copyright-text { font-size: 0.7rem; color: rgba(255, 255, 255, 0.3); }
+    </style>
 </head>
 <body>
 
-<div class="container">
-
-  <!-- PROFILE -->
-  <div class="profile">
-    <div class="avatar-wrap">
-      <div class="avatar-ring">
-        <div class="avatar-inner"></div>
-      </div>
-      <span class="live-badge">Live</span>
+    <!-- Dynamic Screen Loading Mask -->
+    <div id="loader-screen">
+        <div class="loader-logo-placeholder">ValueCart MY</div>
+        <div class="loader-ring"></div>
     </div>
-    <div class="profile-name">Valuecartmy ✨</div>
-    <div class="profile-handle">Brought to you almost everything</div>
-    <div class="profile-bio">Travels,Flights,Accomadation,lifestyle & deals 🌏 We Research, We Verify, We Bring It to You — So You Don't Have To to scroll forever.</div>
-    <div class="stats-row">
-      <div class="stat">
-        <div class="stat-num">Flights</div>
-        <div class="stat-label">Accomadation</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">Fashion</div>
-        <div class="stat-label">shopping</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">90%</div>
-        <div class="stat-label">Verified by reall customers </div>
-      </div>
+
+    <!-- Scroll Track Indicator Bar Component -->
+    <div id="scroll-progress-wrapper">
+        <div id="scroll-progress-bar"></div>
     </div>
-  </div>
 
-  <!-- QUICK DEALS PILLS -->
-  <div class="section-label">🔥 Hot Deals Now</div>
-  <div class="deals-scroll">
-   <a href="https://vt.tiktok.com/ZS922RmsMDoD5-VhKBR" class="deal-pill"><span class="deal-dot" style="background:#ff2d55"></span>TikTok Shop</a>
-    <a href="https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1889601&hid=88417925" class="deal-pill"><span class="deal-dot" style="background:#3b82f6"></span>Hotel Deals</a>
-    <a href="https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1889601&hid=88417925" class="deal-pill"><span class="deal-dot" style="background:#ef4444"></span>Agoda Sale</a>
-    <a href="https://collshp.com/valuecartmy?share_channel_code=1&view=storefront" class="deal-pill"><span class="deal-dot" style="background:#f97316"></span>Shopee</a>
-    
-    <a href="https://vt.tiktok.com/ZS9222HuRuqw3-gzDn0/" class="deal-pill"><span class="deal-dot" style="background:#a855f7"></span>Flash Sale</a>
-  </div>
+    <!-- Primary Vertical Content Node Stack -->
+    <div class="slides-container">
 
-  <!-- FEATURED HIGHLIGHT -->
-  <div class="section-label">⭐ Featured</div>
-  <a href="#" class="highlight-card" onclick="showToast('Opening best hotel deals...')">
-    <div class="highlight-icon">🏨</div>
-    <div class="highlight-content">
-      <div class="highlight-title">Up to 60% Off Hotels Tonight</div>
-      <div class="highlight-sub">Last-minute deals via HotelRunner · Book now</div>
+        <!-- SLIDE 1: HERO CONTAINER -->
+        <section id="slide-1" class="slide hero-slide">
+            <div class="mesh-container">
+                <div class="mesh-blob blob-orange"></div>
+                <div class="mesh-blob blob-green"></div>
+                <div class="mesh-blob blob-blue"></div>
+            </div>
+            <div class="slide-content">
+                <div class="logo-wrapper">
+                    <div class="logo-ambient-glow"></div>
+                    <!-- Direct Fallback Text Logo Setup -->
+                    <div class="main-brand-logo" style="font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; text-shadow: 0 4px 10px rgba(0,0,0,0.5);">🛒 VC</div>
+                </div>
+                <h1 class="hero-tagline">Your Best Deals.<br><span class="glow-text">One Link.</span></h1>
+            </div>
+            <div class="swipe-indicator-block">
+                <span class="swipe-text-hint">Swipe to Explore</span>
+                <div class="bounce-arrow-hint">↓</div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: TIKTOK SHOWCASE ITEMS -->
+        <section id="slide-2" class="slide">
+            <div class="slide-content">
+                <h2 class="slide-title">🛍️ TikTok Shop Picks</h2>
+                <div class="product-grid">
+                    <div class="product-card glass-card">
+                        <div class="img-placeholder"><span class="placeholder-icon">📦</span></div>
+                        <h3 class="product-name">Viral 3-in-1 Magnetic Desk Organizer</h3>
+                        <div class="product-price">RM 39.90</div>
+                        <a href="https://vt.tiktok.com/ZS92PXwFWe2Xk-jri0v/" class="btn btn-sm">Shop Now</a>
+                    </div>
+                    <div class="product-card glass-card">
+                        <div class="img-placeholder"><span class="placeholder-icon">📦</span></div>
+                        <h3 class="product-name">Ultra-Thin Portable Power Bank 20W</h3>
+                        <div class="product-price">RM 59.00</div>
+                        <a href="https://vt.tiktok.com/ZS92PXwFWe2Xk-jri0v/" class="btn btn-sm">Shop Now</a>
+                    </div>
+                    <div class="product-card glass-card">
+                        <div class="img-placeholder"><span class="placeholder-icon">📦</span></div>
+                        <h3 class="product-name">Premium RGB Ambient Smart Lightbar</h3>
+                        <div class="product-price">RM 45.50</div>
+                        <a href="https://vt.tiktok.com/ZS92PXwFWe2Xk-jri0v/" class="btn btn-sm">Shop Now</a>
+                    </div>
+                    <div class="product-card glass-card">
+                        <div class="img-placeholder"><span class="placeholder-icon">📦</span></div>
+                        <h3 class="product-name">Minimalist Aluminum Tablet Stand</h3>
+                        <div class="product-price">RM 19.80</div>
+                        <a href="https://vt.tiktok.com/ZS92PXwFWe2Xk-jri0v/" class="btn btn-sm">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-hint">SWIPE UP ➔</div>
+        </section>
+
+        <!-- SLIDE 3: TIKTOK LIVE & RECENT UPDATES -->
+        <section id="slide-3" class="slide">
+            <div class="slide-content">
+                <h2 class="slide-title">🎬 Latest TikTok Videos</h2>
+                <div class="video-scroll-row">
+                    <div class="video-card glass-card">
+                        <div class="thumbnail-placeholder">
+                            <span class="view-badge">142K views</span>
+                            <span style="opacity:0.3; font-size:1.2rem;">▶</span>
+                        </div>
+                        <h3 class="video-title">Must-have room setups under RM50 from Shopee & TikTok! 🇲🇾</h3>
+                        <a href="https://www.tiktok.com/@valuecartmy?_r=1&_t=ZS-96tRXps0Dfp" class="watch-link">▶ Watch on TikTok</a>
+                    </div>
+                    <div class="video-card glass-card">
+                        <div class="thumbnail-placeholder">
+                            <span class="view-badge">98K views</span>
+                            <span style="opacity:0.3; font-size:1.2rem;">▶</span>
+                        </div>
+                        <h3 class="video-title">Testing the strongest magnetic phone ring holder in the market.</h3>
+                        <a href="https://www.tiktok.com/@valuecartmy?_r=1&_t=ZS-96tRXps0Dfp" class="watch-link">▶ Watch on TikTok</a>
+                    </div>
+                    <div class="video-card glass-card">
+                        <div class="thumbnail-placeholder">
+                            <span class="view-badge">64K views</span>
+                            <span style="opacity:0.3; font-size:1.2rem;">▶</span>
+                        </div>
+                        <h3 class="video-title">Unboxing video: Is this viral smart desk mat actually worth it?</h3>
+                        <a href="https://www.tiktok.com/@valuecartmy?_r=1&_t=ZS-96tRXps0Dfp" class="watch-link">▶ Watch on TikTok</a>
+                    </div>
+                </div>
+                <a href="https://www.tiktok.com/@valuecartmy?_r=1&_t=ZS-96tRXps0Dfp" class="btn" style="margin-top:0.25rem;">Follow @ValueCartMY on TikTok</a>
+            </div>
+            <div class="scroll-hint">SWIPE UP ➔</div>
+        </section>
+
+        <!-- SLIDE 4: SHOPEE STOREFRONT DIRECT -->
+        <section id="slide-4" class="slide">
+            <div class="slide-content">
+                <h2 class="slide-title" style="color:var(--shopee-orange);">🧡 Shopee Store</h2>
+                <div class="store-banner glass-card">
+                    <div class="banner-content">
+                        <div class="banner-logo-placeholder">VC</div>
+                        <div class="banner-text">
+                            <h3 class="banner-title">ValueCart MY</h3>
+                            <p class="banner-subtitle">Official Affiliate Storefront</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="category-chips-container">
+                    <span class="chip active">All</span>
+                    <span class="chip">Electronics</span>
+                    <span class="chip">Home</span>
+                    <span class="chip">Fashion</span>
+                    <span class="chip">Beauty</span>
+                </div>
+                <a href="https://collshp.com/valuecartmy?share_channel_code=1&view=storefront" class="btn btn-shopee-store">Visit My Shopee Store</a>
+            </div>
+            <div class="scroll-hint">SWIPE UP ➔</div>
+        </section>
+
+        <!-- SLIDE 5: SHOPEE LIVE PICKS -->
+        <section id="slide-5" class="slide">
+            <div class="slide-content">
+                <h2 class="slide-title">📹 Shopee Live Picks</h2>
+                <div class="video-scroll-row">
+                    <div class="live-product-card glass-card">
+                        <div class="product-img-wrapper">
+                            <span class="discount-badge">50% OFF</span>
+                            <span class="placeholder-icon">🛍️</span>
+                        </div>
+                        <h3 class="live-product-name">Ergonomic Memory Foam Seat Cushion</h3>
+                        <div class="live-price-container">
+                            <span class="price-current">RM 24.50</span>
+                            <span class="price-original">RM 49.00</span>
+                        </div>
+                        <a href="https://collshp.com/valuecartmy?share_channel_code=1&view=storefront" class="btn btn-buy-now">Buy Now</a>
+                    </div>
+                    <div class="live-product-card glass-card">
+                        <div class="product-img-wrapper">
+                            <span class="discount-badge">35% OFF</span>
+                            <span class="placeholder-icon">🛍️</span>
+                        </div>
+                        <h3 class="live-product-name">Smart Touchless Automatic Soap Dispenser</h3>
+                        <div class="live-price-container">
+                            <span class="price-current">RM 32.00</span>
+                            <span class="price-original">RM 49.20</span>
+                        </div>
+                        <a href="https://collshp.com/valuecartmy?share_channel_code=1&view=storefront" class="btn btn-buy-now">Buy Now</a>
+                    </div>
+                    <div class="live-product-card glass-card">
+                        <div class="product-img-wrapper">
+                            <span class="discount-badge">20% OFF</span>
+                            <span class="placeholder-icon">🛍️</span>
+                        </div>
+                        <h3 class="live-product-name">Portable Electric Lint Remover & Shaver</h3>
+                        <div class="live-price-container">
+                            <span class="price-current">RM 15.90</span>
+                            <span class="price-original">RM 19.90</span>
+                        </div>
+                        <a href="https://collshp.com/valuecartmy?share_channel_code=1&view=storefront" class="btn btn-buy-now">Buy Now</a>
+                    </div>
+                </div>
+                <a href="https://my.shp.ee/wf9r8h91?smtt=0.0.3" class="btn btn-shopee-live">Watch Shopee Live</a>
+            </div>
+            <div class="scroll-hint">SWIPE UP ➔</div>
+        </section>
+
+        <!-- SLIDE 6: AGODA AFFILIATE HUB -->
+        <section id="slide-6" class="slide">
+            <div class="travel-bg-overlay"></div>
+            <div class="slide-content">
+                <h2 class="slide-title" style="color:var(--accent-blue);">✈️ Book Hotels via Agoda</h2>
+                <div class="agoda-card glass-card">
+                    <div class="agoda-logo-placeholder">
+                        <span class="a-red">a</span><span class="g-orange">g</span><span class="o-yellow">o</span><span class="d-blue">d</span><span class="a-green">a</span>
+                    </div>
+                    <div class="star-rating-row">★★★★★</div>
+                    <p class="agoda-description">Best rates guaranteed through my official affiliate link. Access exclusive member discounts worldwide.</p>
+                </div>
+                <a href="https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1889601&hid=88417925" class="btn btn-agoda">Book on Agoda</a>
+            </div>
+            <div class="scroll-hint">SWIPE UP ➔</div>
+        </section>
+
+        <!-- SLIDE 7: HOMESTAY SYSTEM HUB -->
+        <section id="slide-7" class="slide">
+            <div class="slide-content">
+                <h2 class="slide-title">🏡 ValueCart Homestay</h2>
+                <div class="homestay-gallery-viewport">
+                    <div class="gallery-scroll-container">
+                        <div class="gallery-item-card"><div class="gallery-img-placeholder">📸 Cozy Living Room View</div></div>
+                        <div class="gallery-item-card"><div class="gallery-img-placeholder">📸 Master Bedroom Setup</div></div>
+                        <div class="gallery-item-card"><div class="gallery-img-placeholder">📸 Modern Kitchen Facilities</div></div>
+                    </div>
+                    <div class="homestay-price-badge">RM 199 / night</div>
+                </div>
+                <div class="amenities-row glass-card">
+                    <div class="amenity-token"><span class="amenity-icon">📶</span><span class="amenity-label">Free WiFi</span></div>
+                    <div class="amenity-token"><span class="amenity-icon">❄️</span><span class="amenity-label">Full A/C</span></div>
+                    <div class="amenity-token"><span class="amenity-icon">🍳</span><span class="amenity-label">Kitchen</span></div>
+                    <div class="amenity-token"><span class="amenity-icon">🚗</span><span class="amenity-label">Parking</span></div>
+                </div>
+                <div class="homestay-actions-grid">
+                    <a href="https://enrichstay.github.io/Valuecartmy/" class="btn btn-direct-book">Book Direct</a>
+                    <a href="https://wa.me/message/TGME5VYS6DBFP1" class="btn btn-whatsapp-direct">WhatsApp Us</a>
+                </div>
+            </div>
+            <div class="scroll-hint">SWIPE UP ➔</div>
+        </section>
+
+        <!-- SLIDE 8: COMPREHENSIVE LINK INDEX -->
+        <section id="slide-8" class="slide">
+            <div class="ambient-orange-glow"></div>
+            <div class="slide-content" style="justify-content:space-between; min-height:82vh;">
+                <h2 class="slide-title">🔗 Connect with ValueCart MY</h2>
+                <div class="social-links-container">
+                    <a href="https://www.tiktok.com/@valuecartmy?_r=1&_t=ZS-96tRXps0Dfp" class="social-link-btn glass-card brand-tiktok">
+                        <span class="social-icon">📱</span><span class="social-label">TikTok Profile</span>
+                    </a>
+                    <a href="https://collshp.com/valuecartmy?share_channel_code=1&view=storefront" class="social-link-btn glass-card brand-shopee">
+                        <span class="social-icon">🧡</span><span class="social-label">Shopee Storefront</span>
+                    </a>
+                    <a href="https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1889601&hid=88417925" class="social-link-btn glass-card brand-agoda">
+                        <span class="social-icon">✈️</span><span class="social-label">Agoda Bookings</span>
+                    </a>
+                    <a href="https://www.instagram.com/valuecartmy/" class="social-link-btn glass-card brand-instagram">
+                        <span class="social-icon">📸</span><span class="social-label">Instagram</span>
+                    </a>
+                    <a href="https://web.facebook.com/valuecartmy?_rdc=1&_rdr#" class="social-link-btn glass-card brand-facebook">
+                        <span class="social-icon">👥</span><span class="social-label">Facebook Community</span>
+                    </a>
+                    <a href="https://wa.me/message/TGME5VYS6DBFP1" class="social-link-btn glass-card brand-whatsapp">
+                        <span class="social-icon">💬</span><span class="social-label">WhatsApp Channels</span>
+                    </a>
+                    <a href="https://www.youtube.com/@Valuecartmy" class="social-link-btn glass-card brand-youtube">
+                        <span class="social-icon">🎬</span><span class="social-label">YouTube Hub</span>
+                    </a>
+                </div>
+                <footer class="hub-footer">
+                    <p class="copyright-text">© 2026 ValueCart MY. All Rights Reserved.</p>
+                </footer>
+            </div>
+        </section>
+
     </div>
-    <div class="highlight-tag">Hot</div>
-  </a>
 
-  <!-- BOOKING PLATFORMS -->
-  <div class="section-label">🏨 Hotels & Travel</div>
+    <!-- ==========================================================================
+       EXECUTION HOOKS (JAVASCRIPT LAYER)
+       ========================================================================== */ -->
+    <script>
+        // Global Mask Removal Listener Lifecycle
+        window.addEventListener('DOMContentLoaded', () => {
+            const loader = document.getElementById('loader-screen');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+            }, 600); // Guarantees visual clarity before layout fading updates
+        });
 
-  <!-- HotelRunner -->
-  <a href="#" class="card hotel-card" onclick="showToast('Opening HotelRunner Booking...')">
-    <div class="card-strip"></div>
-    <div class="card-inner">
-      <div class="platform-icon hotel-icon">🏨</div>
-      <div class="card-content">
-        <div class="card-title">HotelRunner · Book Direct</div>
-        <div class="card-sub">Best price guarantee · Instant confirmation</div>
-      </div>
-      <span class="card-badge badge-blue">Save 30%</span>
-      <span class="card-arrow">›</span>
-    </div>
-  </a>
-
-  <!-- Agoda -->
-  <a href="https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1889601&hid=88417925" class="card agoda-card" onclick="showToast('Opening Agoda Best deal...')">
-    <div class="card-strip"></div>
-    <div class="card-inner">
-      <div class="platform-icon agoda-icon">🌏</div>
-      <div class="card-content">
-        <div class="card-title">Agoda · 2M+ Properties</div>
-        <div class="card-sub">Hotels · Villas · Apartments across Asia</div>
-      </div>
-      <span class="card-badge badge-red">Up to 60%</span>
-      <span class="card-arrow">›</span>
-    </div>
-  </a>
-
-  <!-- SHOPPING -->
-  <div class="section-label">🛍️ Shop My Picks</div>
-
-  <!-- 🔌 Tech & Electronics -->
-  <a href="#" class="card shopee-card" onclick="showToast('Finding best deal for you from shoppee...')">
-    <div class="card-strip"></div>
-    <div class="card-inner">
-      <div class="platform-icon shopee-icon">🛒</div>
-      <div class="card-content">
-        <div class="card-title">Shopee · Best picks </div>
-        <div class="card-sub">Everything is recommended here is verified buy reall customers  · Tap to shop</div>
-      </div>
-      <span class="card-badge badge-orange">Visit now </span>
-      <span class="card-arrow">›</span>
-    </div>
-  </a>
-
-  <!-- TikTok Showcase -->
-  <a href="https://vt.tiktok.com/ZS922RmsMDoD5-VhKBR/" class="card tiktok-card" onclick="showToast('Opening TikTok shop...')">
-    <div class="card-strip"></div>
-    <div class="card-inner">
-      <div class="platform-icon tiktok-icon">🎵</div>
-      <div class="card-content">
-        <div class="card-title">TikTok Shop · Live Deals</div>
-        <div class="card-sub">Watch, discover & buy in one tap</div>
-      </div>
-      <span class="card-badge badge-pink">Recomended </span>
-      <span class="card-arrow">›</span>
-    </div>
-  </a>
-
-  <!-- TIKTOK SHOWCASE GRID -->
-  <div class="section-label">📱 Latest product </div>
-  <div class="tiktok-grid">
-    <div class="tiktok-thumb" <div class="tiktok-thumb" onclick="window.open(https://vt.tiktok.com/ZSxtpp3f7', '_blank')">
-      <div class="tiktok-thumb-bg" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">🏖️</div>
-      <div class="tiktok-play">▶</div>
-      <div class="tiktok-overlay">
-        <span class="tiktok-views">124K views</span>
-      </div>
-    </div>
-    <div class="tiktok-thumb" onclick="showToast('Opening video...')">
-      <div class="tiktok-thumb-bg" style="background:linear-gradient(135deg,#0d0d1a,#1a0a2e)">🛍️</div>
-      <div class="tiktok-play">▶</div>
-      <div class="tiktok-overlay">
-        <span class="tiktok-views">89K views</span>
-      </div>
-    </div>
-    <div class="tiktok-thumb" onclick="showToast('Opening video...')">
-      <div class="tiktok-thumb-bg" style="background:linear-gradient(135deg,#0d1a0d,#0a1a2e)">🏨</div>
-      <div class="tiktok-play">▶</div>
-      <div class="tiktok-overlay">
-        <span class="tiktok-views">210K views</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- TRUST SIGNALS -->
-  <div class="trust-row">
-    <span class="trust-chip">Verified Creator</span>
-    <span class="trust-chip">Affiliate Disclosed</span>
-    <span class="trust-chip">Secure Links</span>
-    <span class="trust-chip">Real Reviews</span>
-  </div>
-
-  <!-- FOOTER -->
-  <div class="footer">
-    <div class="footer-text">© 2024 @yourhandle · All affiliate links disclosed</div>
-    <div class="footer-links">
-      <a href="#">Privacy</a>
-      <a href="#">Affiliate Disclosure</a>
-      <a href="#">Contact</a>
-    </div>
-  </div>
-
-</div>
-
-<!-- TOAST -->
-<div class="toast" id="toast">Opening link...</div>
-
-<script>
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2000);
-  }
-
-  document.querySelectorAll('a[href="#"]').forEach(a => {
-    a.addEventListener('click', e => e.preventDefault());
-  });
-</script>
+        // Dynamic Progress Track Calculations Engine
+        window.addEventListener('scroll', () => {
+            const progressBar = document.getElementById('scroll-progress-bar');
+            const totalScrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+            
+            if (totalScrollableHeight > 0) {
+                const currentProgressPercentage = (window.scrollY / totalScrollableHeight) * 100;
+                progressBar.style.width = currentProgressPercentage + '%';
+            }
+        });
+    </script>
 </body>
 </html>
